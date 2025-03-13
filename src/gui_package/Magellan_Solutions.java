@@ -31,7 +31,7 @@ public class Magellan_Solutions extends JFrame {
 
     public Magellan_Solutions() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 805, 479);
+        setBounds(100, 100, 808, 482);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
