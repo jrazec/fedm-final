@@ -176,10 +176,10 @@ public class Magellan_Solutions extends JFrame {
                 new ManagerSection().setVisible(true);
                 break;
             case "Customer Service":
-                new EmployeeSection(users,usernameField.getText()).setVisible(true);
+                new EmployeeSection(users).setVisible(true);
                 break;
             case "IT":
-                new EmployeeSection(users,usernameField.getText()).setVisible(true);
+                new EmployeeSection(users).setVisible(true);
                 break;
         }
     }
@@ -232,10 +232,10 @@ class Users {
         userList = new ArrayList<>();
 
         // Predefined Users
-        addUser("Admin", "AdminA", "admin@gmail.com", "Admin", "12345");
-        addUser("John Razec", "Agno", "manager@gmail.com", "Manager", "12345");
-        addUser("Justine Cedrick", "Ambal", "salesrep1@gmail.com", "Customer Service", "12345");
-        addUser("Christine Grace", "Mendoza", "it1@gmail.com", "IT", "12345");
+        addUser("Admin", "AdminA", "admin@gmail.com", "Admin", "12345678");
+        addUser("John Razec", "Agno", "manager@gmail.com", "Manager", "12345678");
+        addUser("Justine Cedrick", "Ambal", "salesrep1@gmail.com", "Customer Service", "12345678");
+        addUser("Christine Grace", "Mendoza", "it1@gmail.com", "IT", "12345678");
     }
 
     public boolean validateUser(String email, String password, String role) {

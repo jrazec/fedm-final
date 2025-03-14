@@ -19,9 +19,8 @@ public class EmployeeSection extends JFrame {
     private JLabel deptLbl;
     private JLabel taskLbl;
 
-    public EmployeeSection(Users users, String loggedInUserEmail) {
+    public EmployeeSection(Users users) {
         this.users = users;
-        this.loggedInUserEmail = loggedInUserEmail;
 
         setTitle("Employee Section");
         setBounds(100, 100, 800, 500);
@@ -82,7 +81,7 @@ public class EmployeeSection extends JFrame {
         if (userData != null && userData.length >= 4) {
             empNameLbl.setText("Employee Name: " + userData[0] + " " + userData[1]);
             deptLbl.setText("Role: " + userData[3]);
-            taskLbl.setText("Task: " + userData[4]); // Ensure the correct index for Task
+            taskLbl.setText("Task: " + userData[5]); // Ensure the correct index for Task
         } else {
             empNameLbl.setText("Employee Name: Not Found");
             deptLbl.setText("Role: Not Found");
@@ -97,7 +96,7 @@ public class EmployeeSection extends JFrame {
         List<User> userList = users.getAllUsers();
 
         for (User user : userList) {
-            if ("Customer Service Department".equals(user.getRole()) || "IT Department".equals(user.getRole())) {
+            if ("Customer Service".equals(user.getRole()) || "IT".equals(user.getRole())) {
                 tableModel.addRow(new Object[]{user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole()});
             }
         }
@@ -108,7 +107,7 @@ public class EmployeeSection extends JFrame {
         String loggedInUserEmail = "employeeEmail@example.com";
         EventQueue.invokeLater(() -> {
             try {
-                EmployeeSection frame = new EmployeeSection(users, loggedInUserEmail);
+                EmployeeSection frame = new EmployeeSection(users);
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
