@@ -20,7 +20,6 @@ public class ManagerSection extends JFrame {
     private JComboBox<String> roleComboBox;
     private JLabel foundLbl;
     private Users users;
-    private JTextField addTaskForEmployeeTxt;
 
     public ManagerSection() {
         users = new Users(); // Load user data
@@ -103,27 +102,6 @@ public class ManagerSection extends JFrame {
         JButton backButton = new JButton("Back");
         backButton.setBounds(30, 421, 100, 30);
         contentPane.add(backButton);
-        
-        JLabel lblAssignTask = new JLabel("Assign task:");
-        lblAssignTask.setBounds(300, 406, 100, 25);
-        contentPane.add(lblAssignTask);
-        
-        addTaskForEmployeeTxt = new JTextField();
-        addTaskForEmployeeTxt.setBounds(398, 405, 218, 25);
-        contentPane.add(addTaskForEmployeeTxt);
-        
-        JButton assignTasks = new JButton("Assign");
-        assignTasks.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-                String email = searchEmailTxt.getText().trim().toLowerCase();
-                String task = addTaskForEmployeeTxt.getText();
-                users.setTask(email,task);
-                // LOGGIN THIS ONE OUT HUHU TOOK ME YEARS JUST TO CREATE THIS ONE LINER.. 
-                LogsHandler.addLog("Manager set task to user: " + email + " - " + task );   	
-        	}
-        });
-        assignTasks.setBounds(635, 404, 120, 30);
-        contentPane.add(assignTasks);
 
         // Search action
         searchButton.addActionListener(new ActionListener() {

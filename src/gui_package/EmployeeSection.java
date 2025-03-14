@@ -17,10 +17,10 @@ public class EmployeeSection extends JFrame {
     // Labels for employee details
     private JLabel empNameLbl;
     private JLabel deptLbl;
-    private JLabel taskLbl;
 
     public EmployeeSection(Users users) {
         this.users = users;
+
 
         setTitle("Employee Section");
         setBounds(100, 100, 800, 500);
@@ -36,22 +36,16 @@ public class EmployeeSection extends JFrame {
         contentPane.add(lblViewUsers);
 
         // Employee Name
-        empNameLbl = new JLabel("Employee Name: ");
+        empNameLbl = new JLabel("Employees Dashboard");
         empNameLbl.setFont(new Font("Arial", Font.PLAIN, 14));
         empNameLbl.setBounds(20, 30, 300, 20);
         contentPane.add(empNameLbl);
 
         // Employee Role
-        deptLbl = new JLabel("Role: ");
+        deptLbl = new JLabel("");
         deptLbl.setFont(new Font("Arial", Font.PLAIN, 14));
         deptLbl.setBounds(20, 50, 300, 20);
         contentPane.add(deptLbl);
-
-        // Task Label
-        taskLbl = new JLabel("Task: ");
-        taskLbl.setFont(new Font("Arial", Font.PLAIN, 14));
-        taskLbl.setBounds(20, 70, 300, 20);
-        contentPane.add(taskLbl);
 
         // Table for users
         tableModel = new DefaultTableModel(new Object[]{"First Name", "Last Name", "Email", "Role"}, 0);
@@ -77,16 +71,6 @@ public class EmployeeSection extends JFrame {
 
     private void loadUserDetails() {
         String[] userData = users.getUserByEmail(loggedInUserEmail);
-
-        if (userData != null && userData.length >= 4) {
-            empNameLbl.setText("Employee Name: " + userData[0] + " " + userData[1]);
-            deptLbl.setText("Role: " + userData[3]);
-            taskLbl.setText("Task: " + userData[5]); // Ensure the correct index for Task
-        } else {
-            empNameLbl.setText("Employee Name: Not Found");
-            deptLbl.setText("Role: Not Found");
-            taskLbl.setText("Task: Not Found");
-        }
     }
 
 
