@@ -92,7 +92,7 @@ public class ManagerSection extends JFrame {
         lblRole.setBounds(302, 367, 100, 25);
         contentPane.add(lblRole);
 
-        roleComboBox = new JComboBox<>(new String[]{"Customer Service Department", "IT Department", "Manager"});
+        roleComboBox = new JComboBox<>(new String[]{"Customer Service", "IT", "Manager"});
         roleComboBox.setBounds(400, 367, 225, 25);
         contentPane.add(roleComboBox);
 
@@ -168,7 +168,7 @@ public class ManagerSection extends JFrame {
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();  
-                new Magellan_Solutions().setVisible(true);
+                new Magellan_Solutions(users).setVisible(true);
             }
         });
     }

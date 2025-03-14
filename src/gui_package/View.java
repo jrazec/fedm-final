@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Comparator;
 import java.util.List;
 
 public class View extends JFrame {
@@ -24,7 +25,7 @@ public class View extends JFrame {
 	private JPanel contentPane;
 	private JTable userTable;
     private DefaultTableModel tableModel;
-    private JComboBox<String> roleFilter;
+    private JComboBox<String> roleFilter,sortAZ;
     private JTextField searchField;
     private Users users; 
 
@@ -75,6 +76,11 @@ public class View extends JFrame {
         JButton backBtn = new JButton("Back");
         backBtn.setBounds(50, 420, 100, 30);
         contentPane.add(backBtn);
+        
+        sortAZ = new JComboBox<>(new String[] {"A-Z", "Z-A"});
+        sortAZ.setBounds(669, 61, 81, 27);
+        contentPane.add(sortAZ);
+        sortAZ.addActionListener(e -> sortRows());
         backBtn.addActionListener(e -> {
             dispose();
             new AdminSection(users).setVisible(true);
@@ -106,6 +112,26 @@ public class View extends JFrame {
             }
         }
     }
+    
+    private void sortRows() {
+        String selectedAZ = (String) sortAZ.getSelectedItem();
+        tableModel.setRowCount(0); 
+
+        List<User> userList = users.getAllUsers();
+
+        if ("A-Z".equals(selectedAZ)) {
+            userList.sort(Comparator.comparing(User::getFullName)); 
+        } else if ("Z-A".equals(selectedAZ)) {
+            userList.sort(Comparator.comparing(User::getFullName).reversed()); 
+        }
+
+        int index = 1;
+        for (User user : userList) {
+            tableModel.addRow(new Object[]{index++, user.getEmail(), user.getFullName(), user.getPassword(), user.getRole()});
+        }
+    }
+
+
 
     private void searchUsers() {
         String searchText = searchField.getText().trim().toLowerCase();

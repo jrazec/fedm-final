@@ -73,7 +73,7 @@ public class AdminSection extends JFrame {
 	        quitBtn.setBounds(300, 333, 200, 40);
 	        contentPane.add(quitBtn);
 	        quitBtn.addActionListener(e->{
-	        openFrame(new Magellan_Solutions());
+	        openFrame(new Magellan_Solutions(users));
 	        });
 	}
     private void openFrame(JFrame frame) {

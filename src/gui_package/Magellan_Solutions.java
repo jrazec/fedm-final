@@ -39,7 +39,7 @@ public class Magellan_Solutions extends JFrame {
         EventQueue.invokeLater(() -> {
             try {
                 users = new Users(); 
-                Magellan_Solutions frame = new Magellan_Solutions();
+                Magellan_Solutions frame = new Magellan_Solutions(users);
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -47,7 +47,8 @@ public class Magellan_Solutions extends JFrame {
         });
     }
 
-    public Magellan_Solutions() {
+    public Magellan_Solutions(Users users) {
+    	this.users = users;
         setTitle("Magellan Solutions - Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 900, 600);
@@ -89,7 +90,7 @@ public class Magellan_Solutions extends JFrame {
         lblLoginTitle.setBounds(110, 20, 150, 30);
         loginPanel.add(lblLoginTitle);
 
-        JLabel lblUsername = new JLabel("Username:");
+        JLabel lblUsername = new JLabel("Email:");
         lblUsername.setFont(new Font("Arial", Font.PLAIN, 14));
         lblUsername.setForeground(new Color(45, 51, 107));
         lblUsername.setBounds(50, 70, 100, 20);
@@ -123,7 +124,7 @@ public class Magellan_Solutions extends JFrame {
         lblRole.setBounds(50, 200, 100, 20);
         loginPanel.add(lblRole);
 
-        roleComboBox = new JComboBox<>(new String[]{"Customer Service Department", "IT Department", "Manager", "Admin"});
+        roleComboBox = new JComboBox<>(new String[]{"Customer Service", "IT", "Manager", "Admin"});
         roleComboBox.setFont(new Font("Arial", Font.PLAIN, 10));
         roleComboBox.setBounds(50, 225, 200, 30);
         roleComboBox.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
@@ -174,9 +175,11 @@ public class Magellan_Solutions extends JFrame {
             case "Manager":
                 new ManagerSection().setVisible(true);
                 break;
-            case "Customer Service Department":
-            case "IT Department":
-                new EmployeeSection().setVisible(true);
+            case "Customer Service":
+                new EmployeeSection(users,usernameField.getText()).setVisible(true);
+                break;
+            case "IT":
+                new EmployeeSection(users,usernameField.getText()).setVisible(true);
                 break;
         }
     }
@@ -229,7 +232,7 @@ class Users {
         userList = new ArrayList<>();
 
         // Predefined Users
-        addUser("Admin", "", "admin@gmail.com", "Admin", "12345");
+        addUser("Admin", "AdminA", "admin@gmail.com", "Admin", "12345");
         addUser("John Razec", "Agno", "manager@gmail.com", "Manager", "12345");
         addUser("Justine Cedrick", "Ambal", "salesrep1@gmail.com", "Customer Service", "12345");
         addUser("Christine Grace", "Mendoza", "it1@gmail.com", "IT", "12345");
