@@ -70,14 +70,6 @@ public class AuditLogs extends JFrame {
         	
         });
 
-        // Clear Logs Button
-        JButton clearButton = new JButton("Clear Logs");
-        clearButton.setBounds(650, 400, 100, 30);
-        contentPane.add(clearButton);
-        clearButton.addActionListener(e -> {
-            LogsHandler.clearLogs();
-            loadLogs();
-        });
 
         loadLogs(); 
     }

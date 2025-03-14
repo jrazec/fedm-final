@@ -158,6 +158,12 @@ public Add(Users users) {
         } else {
             passErrorTxt.setText("");
         }
+	    for (User user : users.getAllUsers()) {  //
+	        if (user.getEmail().equalsIgnoreCase(email)) {
+	        	empErrorLbl.setText("Email has been taken.");
+	            return ;
+	        }
+	    }
 
         //ONCE THE TRANSACTION/INPUTTING OF VALUES IS DONE
         users.addUser(firstName, lastName, email, role, password);
@@ -172,6 +178,7 @@ public Add(Users users) {
         new AdminSection(users).setVisible(true);
         
     }
+
 	
 
 }
