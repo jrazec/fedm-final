@@ -189,13 +189,15 @@ class User {
     private String email;
     private String role;
     private String password;
+    private String task;
 
-    public User(String firstName, String lastName, String email, String role, String password) {
+    public User(String firstName, String lastName, String email, String role, String password,String task) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email.toLowerCase();
         this.role = role;
         this.password = password;
+        this.task = task;
     }
 
     // Getters
@@ -205,12 +207,15 @@ class User {
     public String getEmail() { return email; }
     public String getRole() { return role; }
     public String getPassword() { return password; }
+    public String getTaskToUser() { return password; }
+    
 
     // Setters
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setRole(String role) { this.role = role; }
     public void setPassword(String password) { this.password = password; }
+    public void setTaskToUser(String task) { this.task = task ; }
 }
 
 class Users {
@@ -239,7 +244,7 @@ class Users {
 
     public void addUser(String firstName, String lastName, String email, String role, String password) {
         email = email.toLowerCase();
-        User newUser = new User(firstName, lastName, email, role, password);
+        User newUser = new User(firstName, lastName, email, role, password,"");
         userList.add(newUser);
         credentials.put(email, password);
         roles.put(email, role);
@@ -279,8 +284,17 @@ class Users {
             }
         }
     }
-
-
+    
+    public void setTask(String email, String task) {
+        email = email.toLowerCase();
+        for (User user : userList) {
+            if (user.getEmail().equals(email)) {
+                user.setTaskToUser(task);
+     
+                break;
+            }
+        }
+    }
     public boolean deleteUserByEmail(String email) {
         return userList.removeIf(user -> user.getEmail().equalsIgnoreCase(email));
     }

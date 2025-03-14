@@ -112,6 +112,8 @@ public class Delete extends JFrame {
                         tableModel.setRowCount(0);
                         foundLbl.setText("User Deleted.");
                         deleteUserButton.setEnabled(false);
+                        // LOGGIN THIS ONE OUT HUHU TOOK ME YEARS JUST TO CREATE THIS ONE LINER.. 
+                        LogsHandler.addLog("Admin deleted user: " + deletedEmail);
                     } else {
                         JOptionPane.showMessageDialog(null, "Error deleting user.");
                     }
@@ -121,8 +123,7 @@ public class Delete extends JFrame {
 
 
         backButton.addActionListener(e -> {
-            // LOGGIN THIS ONE OUT HUHU TOOK ME YEARS JUST TO CREATE THIS ONE LINER.. 
-            LogsHandler.addLog("Admin deleted user: " + deletedEmail);
+
             dispose(); 
             new AdminSection(users).setVisible(true); 
         });

@@ -9,7 +9,6 @@ import javax.swing.JTable;
 
 // FOR TABLEE COLUMN HEADERR
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.*;
@@ -28,7 +27,7 @@ public class View extends JFrame {
     private JComboBox<String> roleFilter;
     private JTextField searchField;
     private Users users; 
-    private TableRowSorter<DefaultTableModel> sorter;
+
 
 
 	/**
@@ -55,7 +54,6 @@ public class View extends JFrame {
         contentPane.add(roleFilter);
         roleFilter.addActionListener(e -> filterUsers());
 
-        
         // SEARCH
         searchField = new JTextField();
         searchField.setBounds(230, 60, 150, 25);
@@ -82,15 +80,6 @@ public class View extends JFrame {
             new AdminSection(users).setVisible(true);
         });
 
-        
-
-        // TABLE MODEL & SORTER
-        tableModel = new DefaultTableModel(new Object[]{"#", "Email", "Full Name", "Password", "Department"}, 0);
-        userTable = new JTable(tableModel);
-        sorter = new TableRowSorter<>(tableModel);
-        userTable.setRowSorter(sorter);
-        
-        
         // Load users initially
         loadUsers();
     }
