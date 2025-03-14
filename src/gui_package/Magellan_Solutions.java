@@ -126,28 +126,25 @@ class User {
     public User(String firstName, String lastName, String email, String role, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.email = email.toLowerCase();
         this.role = role;
         this.password = password;
     }
 
-    public String getFullName() {
-        return firstName+ " " + lastName;
-    }
+    // Getters
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public String getFullName() { return firstName + " " + lastName; }
+    public String getEmail() { return email; }
+    public String getRole() { return role; }
+    public String getPassword() { return password; }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+    // Setters
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setRole(String role) { this.role = role; }
+    public void setPassword(String password) { this.password = password; }
 }
-
 
 class Users {
     private Map<String, String> credentials;
@@ -159,29 +156,68 @@ class Users {
         roles = new HashMap<>();
         userList = new ArrayList<>();
 
-        // Predefined users
-        addUser("Admin", "", "admin", "Admin", "12345");
-        addUser("John", "Doe", "manager@gmail.com", "Manager", "12345");
-        addUser("Jane", "Smith", "salesrep1@gmail.com", "Customer Service Department", "12345");
-        addUser("Mike", "Johnson", "it1@gmail.com", "IT Department", "12345");
+        // Predefined Users
+        addUser("Admin", "", "admin@gmail.com", "Admin", "12345");
+        addUser("John Razec", "Agno", "manager@gmail.com", "Manager", "12345");
+        addUser("Justine Cedrick", "Ambal", "salesrep1@gmail.com", "Customer Service", "12345");
+        addUser("Christine Grace", "Mendoza", "it1@gmail.com", "IT", "12345");
     }
 
-    public boolean validateUser(String username, String password, String role) {
-        return credentials.containsKey(username.toLowerCase()) &&
-                credentials.get(username.toLowerCase()).equals(password) &&
-                roles.get(username.toLowerCase()).equals(role);
+    public boolean validateUser(String email, String password, String role) {
+        email = email.toLowerCase();
+        return credentials.containsKey(email) &&
+               credentials.get(email).equals(password) &&
+               roles.get(email).equals(role);
     }
 
     public void addUser(String firstName, String lastName, String email, String role, String password) {
+        email = email.toLowerCase();
         User newUser = new User(firstName, lastName, email, role, password);
         userList.add(newUser);
-        credentials.put(email.toLowerCase(), password);
-        roles.put(email.toLowerCase(), role);
+        credentials.put(email, password);
+        roles.put(email, role);
     }
 
     public List<User> getAllUsers() {
-        return userList;
+        return new ArrayList<>(userList); 
     }
+
+    public String[] getUserByEmail(String email) {
+        for (User user : userList) { 
+            if (user.getEmail().equalsIgnoreCase(email)) { 
+                return new String[]{
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    user.getRole(),
+                    user.getPassword()
+                };
+            }
+        }
+        return null; 
+    }
+
+
+    public void updateUser(String email, String firstName, String lastName, String role, String password) {
+        email = email.toLowerCase();
+        for (User user : userList) {
+            if (user.getEmail().equals(email)) {
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setRole(role);
+                user.setPassword(password);
+                credentials.put(email, password); // Update credentials map
+                roles.put(email, role); // Update roles map
+                break;
+            }
+        }
+    }
+
+
+    public boolean deleteUserByEmail(String email) {
+        return userList.removeIf(user -> user.getEmail().equalsIgnoreCase(email));
+    }
+
 
 
 }

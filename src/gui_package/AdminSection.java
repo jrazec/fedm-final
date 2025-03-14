@@ -60,7 +60,7 @@ public class AdminSection extends JFrame {
 
 	        JButton btnDeleteEmployee = new JButton("Delete Employee");
 	        btnDeleteEmployee.setBounds(300, 230, 200, 40);
-	        btnDeleteEmployee.addActionListener(e -> openFrame(new Delete()));
+	        btnDeleteEmployee.addActionListener(e -> openFrame(new Delete(users)));
 	        contentPane.add(btnDeleteEmployee);
 
 	        JButton btnViewAuditLogs = new JButton("View Audit Logs");

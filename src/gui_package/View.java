@@ -47,7 +47,7 @@ public class View extends JFrame {
         contentPane.add(lblViewUsers);
 
         //  FILTERING
-        roleFilter = new JComboBox<>(new String[]{"All", "Admin", "Faculty", "Student"});
+        roleFilter = new JComboBox<>(new String[]{"All", "Admin", "Manager", "Customer Service", "IT"});
         roleFilter.setBounds(50, 60, 150, 25);
         contentPane.add(roleFilter);
         roleFilter.addActionListener(e -> filterUsers());
