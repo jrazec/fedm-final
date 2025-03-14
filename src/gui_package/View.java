@@ -29,11 +29,13 @@ public class View extends JFrame {
     private Users users; 
 
 
+
 	/**
 	 * Create the frame.
 	 */
     public View(Users users) {
         this.users = users; 
+        LogsHandler.addLog("Admin viewed all users");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 500);
@@ -89,6 +91,7 @@ public class View extends JFrame {
         for (User user : userList) {
             tableModel.addRow(new Object[]{index++, user.getEmail(), user.getFullName(), user.getPassword(), user.getRole()});
         }
+        
     }
 
     private void filterUsers() {

@@ -4,11 +4,13 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.border.EmptyBorder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Magellan_Solutions extends JFrame {
@@ -206,8 +208,8 @@ class Users {
                 user.setLastName(lastName);
                 user.setRole(role);
                 user.setPassword(password);
-                credentials.put(email, password); // Update credentials map
-                roles.put(email, role); // Update roles map
+                credentials.put(email, password); 
+                roles.put(email, role);
                 break;
             }
         }
@@ -217,9 +219,24 @@ class Users {
     public boolean deleteUserByEmail(String email) {
         return userList.removeIf(user -> user.getEmail().equalsIgnoreCase(email));
     }
+    
+    public class AuditLog {
+        private static final List<String> logs = new ArrayList<>();
 
+        public static void addLog(String action) {
+            logs.add(action);
+        }
 
+        public static List<String> getLogs() {
+            return new ArrayList<>(logs);
+        }
+
+        public static void clearLogs() {
+            logs.clear();
+        }
+    }
 
 }
+
 
 

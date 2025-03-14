@@ -13,6 +13,7 @@ public class AdminSection extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static Users users;
+
 	
 	/**
 	 * Launch the application.
@@ -39,7 +40,7 @@ public class AdminSection extends JFrame {
         setBounds(100, 100, 800, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(new Color(30, 144, 255)); // Blue background
+        contentPane.setBackground(new Color(30, 144, 255)); // Blue colorr
         setContentPane(contentPane);
         contentPane.setLayout(null);
 		
@@ -55,7 +56,7 @@ public class AdminSection extends JFrame {
 
 	        JButton btnUpdateEmployee = new JButton("Update Employee");
 	        btnUpdateEmployee.setBounds(300, 180, 200, 40);
-	        btnUpdateEmployee.addActionListener(e -> openFrame(new Update()));
+	        btnUpdateEmployee.addActionListener(e -> openFrame(new Update(users)));
 	        contentPane.add(btnUpdateEmployee);
 
 	        JButton btnDeleteEmployee = new JButton("Delete Employee");
@@ -65,8 +66,15 @@ public class AdminSection extends JFrame {
 
 	        JButton btnViewAuditLogs = new JButton("View Audit Logs");
 	        btnViewAuditLogs.setBounds(300, 280, 200, 40);
-	        btnViewAuditLogs.addActionListener(e -> openFrame(new AuditLogs()));
+	        btnViewAuditLogs.addActionListener(e -> openFrame(new AuditLogs(users)));
 	        contentPane.add(btnViewAuditLogs);
+	        
+	        JButton quitBtn = new JButton("Quit");
+	        quitBtn.setBounds(300, 333, 200, 40);
+	        contentPane.add(quitBtn);
+	        quitBtn.addActionListener(e->{
+	        openFrame(new Magellan_Solutions());
+	        });
 	}
     private void openFrame(JFrame frame) {
         frame.setVisible(true);
